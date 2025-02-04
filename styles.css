@@ -1,6 +1,132 @@
-.container {
-    width: 100vw;
-    background-color: #fafafc;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  
+  .navbar {
     display: flex;
-    flex-direction: column;
-}
+    align-items: center;
+    justify-content: space-between;
+    background: #f2f2f2;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .navbar-logo a {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 15px; 
+  }
+  
+  .navbar-links li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    padding: 6px 8px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .navbar-links li a:hover {
+    background-color: #ddd;
+  }
+  
+  .navbar-buttons {
+    display: flex;
+    gap: 10px; 
+  }
+  
+  .btn {
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+  }
+  
+  .login-btn {
+    background-color: #ffffff;
+    color: #005abb;
+  }
+  
+  .login-btn:hover {
+    background-color: #d5d2d2; 
+  }
+  
+  .register-btn {
+    background-color: #005abb;
+    color: #fff;
+  }
+
+  .blue-text {
+    color: #007bff;
+  }  
+  
+  .register-btn:hover {
+    background-color: #003772; 
+  }
+
+  .text {
+    position: absolute;
+    width: 608px;
+    height: 249px;
+    top: 238px;
+    left: 115px;
+  }
+
+  .text h1 {
+    font-family: Steradian TRIAL;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 83px;
+  }
+
+  .text span {
+    color: #005abb;
+  }
+
+  .text2 {
+    width: 586px;
+    height: 78px;
+    position: absolute;
+    top: 450px;
+    left: 120px;
+  }
+
+  .text2 h1 {
+    font-family: Steradian TRIAL;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+    color: #767676;
+  }
+
+  .btn {
+    width: 384px;
+    height: 71px;
+    position: absolute;
+    top: 600px;
+    left: 120px;
+    border-radius: 10px;
+    padding-left: 120px;
+    padding-right: 120px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .btn h1 {
+    font-family: Steradian TRIAL;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 30px;
+    color: #ffffff;
+  }
