@@ -1,40 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-</head>
-<body>
-    <nav class="navbar">
-        <div class="navbar-logo">
-            <a href="#">
-              Quiz <span class="blue-text">BiH</span>
-            </a>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="logo">Quiz <span>BiH</span></div>
+      <div class="nav-links">
+        <span><a href=""></a>Početna</span>
+        <span><a href="#quiz-section"></a>Uputstva</span>
+        <span><a href="#leaderboard-section"></a>Ljestvica</span>
+      </div>
+      <div class="auth-links">
+        <div class="login-button">
+          <a href="login.html" >Prijavi se</a>
         </div>
-
-        <ul class="navbar-links">
-          <li><a href="#">Početna</a></li>
-          <li><a href="#">Upustva</a></li>
-          <li><a href="#">Igraonica</a></li>
-        </ul>
-    
-        <div class="navbar-buttons">
-          <a href="#" class="btn login-btn">Prijava</a>
-          <a href="#" class="btn register-btn">Registracija</a>
-        </div>
-      </nav>
-      <div class="main">
-        <div class="text">
-            <h1>Pokažite svoje znanje o <span>Bosni i Hercegovini</span></h1>
-        </div>
-        <div class="text2">
-            <h1>Testirajte svoje znanje o historiji, kulturi i znamenitostima naše predivne domovine! Koliko dobro poznajete Bosnu i Hercegovinu</h1>
-        </div>
-        <div class="btn">
-            <h1>Započni kviz</h1>
+        <div class="register-button">
+          <a href="register.html" >Registriraj se</a>
         </div>
       </div>
-</body>
-</html>
+    </div>
+    <div class="container">
+      <div class="text-content">
+        <h1>Pokažite svoje znanje o <span>Bosni i Hercegovini</span></h1>
+        <p>
+          Testirajte svoje znanje o historiji, kulturi i znamenitostima naše
+          predivne domovine! Koliko dobro poznajete Bosnu i Hercegovinu?
+        </p>
+        <a href="/zapocni-kviz.html" class="btn">Započni kviz</a>
+        <p class="stats">+200 odigranih kvizova</p>
+      </div>
+      <div class="image-content">
+        <img src="./slike/home-bg.png" alt="" class="imgg">
+      </div>
+    </div>
+    <section class="quiz-section">
+      <div class="quiz-text">
+          <h2><img src="./slike/Group.svg" alt=""> Kako funkcioniše kviz?</h2>
+          <p>
+              U našem kvizu, jednostavno je izazvati sebe i druge! Odaberite kviz, odgovorite na pitanja u zadanom vremenu i osvojite što više tačnih odgovora. Na kraju, možete provjeriti svoj rezultat i uporediti se sa najboljima na leaderboardu. Brzo, zabavno i edukativno!
+          </p>
+      </div>
+      <div class="quiz-button">
+          <button class="start-quiz">Započni kviz</button>
+      </div>
+  </section>
+  
+  <div class="quiz-cards">
+      <div class="card">
+          <img src="./slike/card-1.png" alt="Prijavi se">
+          <div class="card-content">
+              <h3>Prijavi se</h3>
+              <p>Registruj se na Quiz BiH!</p>
+              <div class="card-arrow">➝</div>
+          </div>
+      </div>
+      <div class="card card2">
+          <img src="./slike/card-2.png" alt="Uradi kviz">
+          <div class="card-content">
+              <h3>Uradi kviz</h3>
+              <p>Odgovori na sva pitanja koja imamo!</p>
+              <div class="card-arrow">➝</div>
+          </div>
+      </div>
+      <div class="card card2">
+          <img src="./slike/card-3.png" alt="Budi #1">
+          <div class="card-content">
+              <h3>Budi #1</h3>
+              <p>Osvoji ljestvicu i budi prvi!</p>
+              <div class="card-arrow">➝</div>
+          </div>
+      </div>
+  </div>
+  <section class="leaderboard-section">
+    <div class="leaderboard-container">
+        <h2>Takmičite se i osvajajte vrh !</h2>
+        <p>Izazovite svoje prijatelje i igrače širom sveta. Pokažite da ste najbolji i zauzmite svoje mjesto na leaderboardu!</p>
+        <a href="./zapocni-kviz.html" class="start-quiz">Započni kviz</a>
+        <div class="leaderboard">
+            <div class="leaderboard-item">
+                <span class="rank">#1</span>
+                <span class="name"> <img src="https://s3-alpha-sig.figma.com/img/50e2/bbc2/3961dfb1fb031d40ddc0d9f18d6f6392?Expires=1741564800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=mRow-aDb4j3~Quz87VrAfZMbvAQ8HPLHUcezRD3zbI20cMdMIGuzxp60KBwT5LjzRte05Fkrkj51X22AnjFITjb4neogA2Xh2mT5M8~ZpG1P5~AwRFuyJv4Y9BBdOrJfwf45qc2FZcsUCpt6biWqMTepl6YvcS5IuKl4Q6MuTWT9SAwnTonLt-pWPby5UGikvEvw8j1oRYGwbI5QyAf14BXEN9b51eQXzvxfkfGqHYmkP57QLUkJJMaRMQn0YR2Y5aewpO2o94vCje53stkCwiR~fKULQ1bRR-gCjKnalzKfj-bROq5pzg6AsPEFWaB21W4K~Ho6vWzGDrVvtAAgMw__" alt="Avatar" class="avatar">Jasmin Fajkic</span>
+                <span class="score">150 Bodova</span>
+            </div>
+            <div class="leaderboard-item">
+                <span class="rank">#2</span>
+                <span class="name"><img src="https://s3-alpha-sig.figma.com/img/c9a6/d908/e4a2cbaa065a51808d9c52ce07e3a747?Expires=1741564800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=aWXDfQiYeLcQSfDbuAenyZ86iWa4R30r~4Ua0hBbNO8s3u2bC6mujFr-u1fx-RJgloQ9XohgsZoup7ob0mXYltaJj157MfOFH~BIsOT1m6jBx71k6T9wSlustcZgUtBaVHPcZu4IDr8POh~xa-U3yb3ftYLcMfE0tEARRGNYsYjPFkVJZQM6fa49RucBZJbP5OCyqd7Q1tWh8MWJeirDkSDf71K8RbjM~gKnTLMjurmF-p1G0rqZFbqZFzepjagIjl9i~RyuMZrsMeiskSMvehpVzE2UyBzS8rdLr4scorMT6-dR~s~A4sjC48BHagMI0GugcY4ReSBGLHdzxE1Ibg__" alt="Avatar" class="avatar">Marko Petrović</span>
+                <span class="score">140 Bodova</span>
+            </div>
+            <div class="leaderboard-item">
+                <span class="rank">#3</span>
+                <span class="name"><img src="https://s3-alpha-sig.figma.com/img/81e5/81ba/c5a4cecce9ffd2262f765fc4992d1da4?Expires=1741564800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=stewzrOK7ZwCi4CMRvgyd-2j7~1-GGKm5lguZnBfmjZCuWhIFK2jBnNnnGViqXii9y7u5q9wOxg72kZVCXTN3686IU0zju8cKmkAtoAWrOGQ8StDStvSoJWvIOn~WucAyE1BcdspzSESVfvydRrKCmJ5kOPf8KxXdBnMIU0JEomnyewzScdPgKL2TdIFTg3i8N074~6tzrEfIvNqTxjDawO-27keLvRBfOaFdI4OjWUYpi5pwiEi16UwAzbAErqfd~O9UMKvEN~vwuXb3nZXIb3XLxCCWaXdORqL4afc41JKUEeKayNTHiRmHH-DOjYs~taLFOErIpv-AHzsT5nyzQ__" alt="Avatar" class="avatar">Jasmina Hadzic</span>
+                <span class="score">125 Bodova</span>
+            </div>
+            <div class="leaderboard-item">
+                <span class="rank">#4</span>
+                <span class="name"><img src="https://s3-alpha-sig.figma.com/img/253c/c901/368a17a4f8b742b912492a06fda92e06?Expires=1741564800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=NvJ63Gq0-u5AmQbL2nxi2KB1XlzX1HE9wdDBYmb2G6nP8blqNrq4AtfeFfLnnbpePwYVKjiZ1tGjkyxbs-AOWMGhf91yEldwT-pf1xw8mkcV3degHFLJKLgLo~8VN9tIsktrJP783hMPtcF6e2Thzo55xLrmtjg7w9jByJrtg9VUlTs6YarlNkdUEz6GGcor8sej~yoHTtIjgF0FIRUUsfq91Rh3B8xnsWuX-GSAwI7Cv23VEZ2MPmEPAEVtiZNnxpp467iCSP3HRb9t~ySATYTXsbRq7F5DayhgLvcZIS2tZSb-sfOf0nNkubLtWY7CPdF4cL~HqZB5kAh-uQJ0-Q__" alt="Avatar" class="avatar">Lejla Majic</span>
+                <span class="score">120 Bodova</span>
+            </div>
+            <div class="leaderboard-item">
+                <span class="rank">#5</span>
+                <span class="name"><img src="https://s3-alpha-sig.figma.com/img/0137/6a01/f8898b4d066033af55f17b0f52d39b46?Expires=1741564800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=EFjUUKlzVNuo6R9tRqkeHbYnk6poQVcaEwdkSDHpKhEoTd~~E6gphgiJI2LWeLqrbPDxHhVt-PKGG9qDH3qSzSuw0u87BwUpSUBRP0UJVbMwj8Fsqjia-rrqI3VXM7V5XS1SO5gn8wjm6bvotXCzAPX~5vR3xcVgIRREL8dxf0auGP9MfNRD~chm~wLuqujdiTmiTL9~SaukrLG8~IURuOGWbBKBF5Xr9~wSO7lAT7S4ByyMC-JvZfgPOf-xsDY9Q8SPRwJFj7Er8DRHPdmrFVuJloPUoJuJbQ3qZr7d8TPietJGupew5B0csKjcBtsPLyKHPU0xSoEH1y~unxp5Pw__" alt="Avatar" class="avatar">Ivan Kovačević</span>
+                <span class="score">110 Bodova</span>
+            </div>
+            <div class="leaderboard-item">
+                <span class="rank">#Ti</span>
+                <span class="name"><img src="" alt="Avatar" class="avatar">Jasmin Fajkic</span>
+                <span class="score">150 Bodova</span>
+            </div>
+        </div>
+    </div>
+</section>
+    <script src="./kviz.js"></script>
+  </body>
+  </head>

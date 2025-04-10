@@ -13,6 +13,45 @@
     padding: 10px 20px;
     border-bottom: 1px solid #ccc;
   }
+
+  .navbar-buttons {
+    width: 100px;
+    height: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.login-btn {
+    background-color: #007bff;
+    color: white;
+    border: 2px solid #007bff;
+}
+
+.login-btn:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.register-btn {
+    background-color: #28a745;
+    color: white;
+    border: 2px solid #28a745;
+}
+
+.register-btn:hover {
+    background-color: #1e7e34;
+    border-color: #1e7e34;
+}
+
   
   .navbar-logo a {
     text-decoration: none;
@@ -79,7 +118,7 @@
     position: absolute;
     width: 608px;
     height: 249px;
-    top: 238px;
+    top: 150px;
     left: 115px;
   }
 
@@ -98,7 +137,7 @@
     width: 586px;
     height: 78px;
     position: absolute;
-    top: 450px;
+    top: 330px;
     left: 120px;
   }
 
@@ -114,7 +153,7 @@
     width: 384px;
     height: 71px;
     position: absolute;
-    top: 600px;
+    top: 420px;
     left: 120px;
     border-radius: 10px;
     padding-left: 120px;
