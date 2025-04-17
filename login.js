@@ -1,3 +1,5 @@
+const submitButton = document.getElementById("login-button")
+
 async function loginUser() {
     try {
       const response = await fetch("https://quiz-be-zeta.vercel.app/auth/login",
@@ -14,11 +16,16 @@ async function loginUser() {
         }
       );
       const data = await response.json();
-      console.log(data);
-      localStorage.setItem("token", data.user.token);
+      console.log(window.location)
+
+      window.location.href="./index.html"
+      
+      localStorage.setItem("token", data.token);
     } catch (error) {
       console.log(error);
     } finally {
       console.log("Finally");
     }
   }
+submitButton.addEventListener("click", loginUser)
+

@@ -1,5 +1,13 @@
 const registerButton = document.getElementsByClassName("register-button")[0];
-
+const buttons = document.getElementById("buttons")
+function removeButtons () {
+  console.log("wds")
+  const token = localStorage.getItem("token")
+  console.log(token)
+  if (token) {
+    buttons.style.display= "none"
+  }
+}
 registerButton?.addEventListener("click", () => {
   registerUser();
 });
@@ -106,3 +114,23 @@ function logRespons(response) {
   }
   
   
+window.addEventListener("load", removeButtons)
+
+async function loginUser() {
+  try {
+    const response = await fetch("https://quiz-be-zeta.vercel.app/leaderboard",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await response.json();
+    
+  } catch (error) {
+    console.log(error);
+  } finally {
+    console.log("Finally");
+  }
+}
