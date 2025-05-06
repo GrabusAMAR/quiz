@@ -3,43 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/zapocni-igranje2.css">
+    <link rel="stylesheet" href="./zapocni-igranje2.css">
     <title>Document</title>
 </head>
 <body>
     <h1>Quiz <span>BiH</span></h1>
     <div class="header">
         <div class="bodovi">
-            <img src="./slike/trophy.svg" alt="Bodovi"> <p>Bodovi</p>: 0
-        </div>
-        <div class="najbolji-rezultat">
-            <img src="./slike/ri_medal-line.svg" alt="Najbolji rezultat"> <p>Najbolji rezultat</p>: 200
-        </div>
-        <div class="streak">
-            <img src="./slike/material-symbols_star-outline-rounded.svg" alt="Streak"> Streak: 2
+            <img src="./slike/trophy.svg" alt="Bodovi"> <span class="text-bodovi"> Bodovi</span>: <span id="bodovi">0</span>
         </div>
         <div class="timer">
-            <img src="./slike/tabler_clock.svg" alt="Timer"> 30 s
-        </div>
+          <img src="./slike/tabler_clock.svg" alt="Timer"> <span id="timer">30</span> s
+      </div>
     </div>
     <div class="container">
       <div class="question-box">
-        <span>Pitanje 1 od 20</span>
+        <span>Pitanje <span id="redniBroj">1</span>.</span>
         <a href="./zavrsi-kviz.html" class="button">Završi kviz</a>
       </div>
-      <p class="text-content">
-        Koji historijski događaj se desio 25. novembra 1943. godine u Mrkonjić
-        Gradu, a smatra se jednim od najvažnijih trenutaka u historiji Bosne i
-        Hercegovine jer je tada donesena odluka o njenoj budućnosti kao
-        ravnopravne republike unutar Jugoslavije?
+      <p class="text-content" id="question-text">
       </p>
       <div class="linija"></div>
-      <div class="options">
-        <button class="option-btn"><span>A</span> Održana je prva sjednica ZAVNOBiH-a</button>
-        <button class="option-btn"><span>B</span> Održana je prva sjednica ZAVNOBiH-a</button>
-        <button class="option-btn"><span>C</span> Održana je prva sjednica ZAVNOBiH-a</button>
-        <button class="option-btn"><span>D</span> Održana je prva sjednica ZAVNOBiH-a</button>
+      <div class="options" id="options-container">
       </div>
     </div>
+
+    <script src="./zapocni-igranje.js"></script>
 </body>
 </html>

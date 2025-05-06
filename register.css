@@ -1,13 +1,28 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: "Steradian TRIAL", sans-serif;
     display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
+}
+.container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
     overflow: hidden;
 }
-.video {
+
+.container {
+    width: 100%;
+    height: 110vh; 
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.background-video {
     position: absolute;
     top: 0;
     left: 0;
@@ -15,22 +30,21 @@ body {
     min-height: 100%;
     object-fit: cover;
     z-index: 1;
-   }
-
+  }
 
 .right-side {
-    width: 25vw;
+    width: 536px;
     background: #FAFAFC;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    box-shadow: -4px 0 15px rgba(1, 1, 1, 1);
-    z-index: 1000;
     padding: 50px;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 2;
     border-radius: 3%;
 }
 .right-side h1 {
-    font-size: 28px;
+    font-size: 26px;
     color: #333;
     margin-bottom: 10px;
     text-align: center;
@@ -40,10 +54,10 @@ body {
 }
 
 .right-side h2 {
-    font-size: 25px;
+    font-size: 22px;
     color: #333;
     margin-bottom: 5px;
-    text-align: center;
+    text-align: left;
 }
 .right-side p {
     font-size: 14px;

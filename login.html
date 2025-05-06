@@ -1,37 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./login.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./login.css" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-    <video autoplay muted loop class="video">
-        <source src="./slike/mostar.mp4 " type="video/mp4"></video>
-    <div class="right-side">
+      <video autoplay muted loop class="background-video">
+        <source src="./slike/mostar.mp4" type="video/mp4" />
+      </video>
+
+      <div class="right-side">
         <h1>Quiz <span>BiH</span></h1>
         <h2>Prijavite se na vaš račun</h2>
         <p>Unesite informacije za prijavu</p>
         <button class="google-login">
-            <img src="./slike/Symbol.svg.png" alt="Google logo"> Prijavi se putem Google računa
+          <img src="./slike/Symbol.svg.png" alt="Google logo" /> Prijavi se
+          putem Google računa
         </button>
         <div class="input-group">
-            <input type="email" id="email" placeholder="Unesite e-mail">
+          <input type="email" id="email" placeholder="Unesite e-mail" />
         </div>
         <div class="input-group">
-            <input type="password" id="password" placeholder="Unesite lozinku">
+          <input type="password" id="password" placeholder="Unesite lozinku" />
         </div>
         <div class="password-options">
-            <a href="#">Zaboravili ste lozinku?</a>
-            <a href="#">Resetuj lozinku.</a>
+          <a href="#">Zaboravili ste lozinku?</a>
+          <a href="#">Resetuj lozinku.</a>
         </div>
-        <button id="login-button">Prijavi se</button>
-        <div class="register-link">Nemate račun? <a href="register.html">Registruj se</a></div>
+        <button class="login-button">Prijavi se</button>
+        <div class="register-link">
+          Nemate račun? <a href="register.html">Registruj se</a>
+        </div>
+      </div>
     </div>
-    </div>
-    
-    <script src="/login.js"></script>
-</body>
+    <script src="./login.js"></script>
+  </body>
 </html>
