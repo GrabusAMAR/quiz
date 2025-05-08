@@ -27,7 +27,7 @@ async function loadQuestion() {
 }
 
 function startTimer() {
-  let timeLeft = 30;
+  let timeLeft = 10;
   document.getElementById("timer").textContent = timeLeft;
 
   clearInterval(timerInterval);
@@ -99,7 +99,7 @@ function showQuestion(question) {
       } else {
         btn.style.backgroundColor = "#dc3545";
         setTimeout(() => {
-          window.location.href = "./zavrsi-kviz.html";
+          endQuiz();
         }, 1000);
       }
     });
@@ -108,4 +108,19 @@ function showQuestion(question) {
   });
 }
 
-loadQuestion();
+loadQuestion(); 
+
+function endQuiz() {
+  document.querySelectorAll('.quiz-end-modal, .btn').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.getElementById('quiz-end-modal').style.display = 'flex';
+    });
+  });
+  
+
+  
+  document.getElementById('startGameBtn').addEventListener('click', function () {
+    window.location.href = 'zapocni-igranje2.html'; 
+  });
+}

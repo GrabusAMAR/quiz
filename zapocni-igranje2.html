@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./zapocni-igranje2.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./zapocni-igranje2.css" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Quiz <span>BiH</span></h1>
     <div class="header">
-        <div class="bodovi">
-            <img src="./slike/trophy.svg" alt="Bodovi"> <span class="text-bodovi"> Bodovi</span>: <span id="bodovi">0</span>
-        </div>
-        <div class="timer">
-          <img src="./slike/tabler_clock.svg" alt="Timer"> <span id="timer">30</span> s
+      <div class="bodovi">
+        <img src="./slike/trophy.svg" alt="Bodovi" />
+        <span class="text-bodovi"> Bodovi</span>: <span id="bodovi">0</span>
+      </div>
+      <div class="timer">
+        <img src="./slike/tabler_clock.svg" alt="Timer" />
+        <span id="timer">10</span> 
       </div>
     </div>
     <div class="container">
@@ -21,13 +23,39 @@
         <span>Pitanje <span id="redniBroj">1</span>.</span>
         <a href="./zavrsi-kviz.html" class="button">Završi kviz</a>
       </div>
-      <p class="text-content" id="question-text">
-      </p>
+      <p class="text-content" id="question-text"></p>
       <div class="linija"></div>
-      <div class="options" id="options-container">
+      <div class="options" id="options-container"></div>
+    </div>
+
+    <div id="quiz-end-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3>Quiz BiH</h3>
+        <p><strong>Čestitamo na završenom kvizu!!</strong></p>
+        <p>U prilogu pogledajte svoju statistiku:</p>
+        <p>Osvojili ste: <span id="final-score"></span> bodova</p>
+        <p>Leaderboard: <span id="final-rank"></span> mjesto</p>
+        <div class="buttons">
+          <button id="startGameBtn" onclick="closeModal()">Zatvori</button>
+          <button onclick="goToLeaderboard()">Leaderboard</button>
+        </div>
       </div>
     </div>
 
+    <div id="quiz-end-modal" class="quiz-end-modal hidden" style="display: none;">
+      <div class="modal-content">
+        <h3>Quiz BiH</h3>
+        <h2>Čestitamo na završenom kvizu !!</h2>
+        <p>U prilogu pogledajte svoju statistiku :</p>
+        <p>Osvojili ste: <strong id="final-score">0</strong> bodova <span></span></p>
+        <p>Leaderboard: <strong id="final-rank">#?</strong> mjesto <span></span></p>
+        <div class="modal-buttons">
+          <button onclick="loadQuestion()">Igraj ponovo</button>
+          <button onclick="goToLeaderboard()">Leaderboard</button>
+        </div>
+      </div>
+    </div>
+    </div>
     <script src="./zapocni-igranje.js"></script>
-</body>
+  </body>
 </html>

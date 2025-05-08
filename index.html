@@ -11,7 +11,7 @@
       <div class="logo">Quiz <span>BiH</span></div>
       <div class="nav-links">
         <span><a href=""></a>Početna</span>
-        <span><a href="quiz-section"></a>Uputstva</span>
+        <span><a href="#quiz-section"></a>Uputstva</span>
         <span><a href="#leaderboard-section"></a>Ljestvica</span>
       </div>
       <div class="auth-links">
@@ -95,16 +95,21 @@
       </div>
     </section>
     <div id="quiz-modal" class="quiz-modal" style="display: none;">
-      <div class="modal-content">
+      <div class="modal-box">
+        <p class="quiz-brand"><strong>Quiz <span>BiH</span></strong></p>
         <h2>Spremite se za kviz!</h2>
-        <p>Pažljivo birajte odgovore i sakupljajte što više bodova za najviše mjesto!</p>
-        <ul>
-          <li><img src="./slike/trophy.svg" alt="">Svaki tačan odgovor nosi 10 bodova</li>
-          <li><img src="./slike/tabler_clock.svg" alt="">Za svako pitanje imate 10 sekundi</li>
-          <li><img src="./slike/ri_medal-line.svg" alt="">Ostavit ćeš bolji rezultat i rangirati se na ljestvici</li>
+        <p class="quiz-subtext">
+          Pažljivo birajte odgovore i pokušajte osvojiti što više bodova prije nego istekne vrijeme.
+        </p>
+        <ul class="quiz-rules">
+          <li><img src="./slike/trophy.svg" alt="">Svaki tačan odgovor nosi 1 bod</li>
+          <li><img src="./slike/tabler_clock.svg" alt="">Za svako pitanje imate 10 sekundi da odgovorite</li>
+          <li><img src="./slike/ri_medal-line.svg" alt="">Ostvari što bolji rezultat i rangiraj se na ljestvicu</li>
         </ul>
-        <button id="startGameBtn">Počni kviz</button>
-        <button id="closeModal">Zatvori</button>
+        <div class="modal-buttons">
+          <button id="closeModal" class="btn-secondary">Odustani</button>
+          <button id="startGameBtn" class="btn-primary">Pokreni kviz</button>
+        </div>
       </div>
     </div>
     <script src="./leaderboard.js"></script>
