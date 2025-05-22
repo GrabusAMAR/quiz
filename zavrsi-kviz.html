@@ -7,14 +7,19 @@
     <link rel="stylesheet" href="./zavrsi-kviz.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Čestitamo na završenom kvizu</h1>
-        <p>Osvojili ste:</p>
-        <div class="score">120 bodova</div>
-        <div class="image-container">
-          <img src="./slike/cheerful-emoji-with-sunglasses-party-confetti-transparent-background-b 1.png" alt="Emoji" />
-        </div>
-        <a href="index.html" class="btn">Zatvori</a>
+  <div class="overlay">
+    <div class="modal">
+      <p class="quiz-title">Quiz <span class="bih">BiH</span></p>
+      <h2>Čestitamo na završenom kvizu !!</h2>
+      <p class="subtext">U prilogu pogledajte svoju statistiku:</p>
+      <p class="points">Osvojili ste: <strong>120 bodova</strong></p>
+      <p class="leaderboard">Leaderboard: <strong>#3 mjesto</strong></p>
+      <div class="buttons">
+        <button class="btn close" id="close" onclick="closeModal()">Igraj ponovo</button>
+        <button class="btn leaderboard" id="leaderboard" onclick="">Leaderboard</button>
       </div>
+    </div>
+  </div>
+  <script src="/zavrsi-kviz.js"></script>
 </body>
 </html>

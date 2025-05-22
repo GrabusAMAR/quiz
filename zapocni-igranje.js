@@ -8,6 +8,11 @@ let currentQuestionId;
 async function loadQuestion() {
   try {
     const token = localStorage.getItem("token");
+    
+    if (!token) {
+      window.location.href = 'login.html';
+      return;
+    }
 
     const res = await fetch("https://quiz-be-zeta.vercel.app/game/start", {
       method: "POST",
@@ -17,12 +22,22 @@ async function loadQuestion() {
       },
     });
 
+    if (!res.ok) {
+      throw new Error('Failed to fetch questions');
+    }
+
     const data = await res.json();
+
+    if (!data.question) {
+      throw new Error('No questions available');
+    }
 
     currentGameId = data.gameId;
     showQuestion(data.question);
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    alert('Došlo je do greške pri učitavanju pitanja. Molimo pokušajte ponovo.');
+    window.location.href = 'index.html';
   }
 }
 
@@ -38,14 +53,14 @@ function startTimer() {
 
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
-      window.location.href = "./zavrsi-kviz.html";
+      endQuiz();
     }
   }, 1000);
 }
 
 function showQuestion(question) {
   if (!question) {
-    window.location.href = "./zavrsi-kviz.html";
+    endQuiz();
     return;
   }
 
@@ -110,17 +125,127 @@ function showQuestion(question) {
 
 loadQuestion(); 
 
-function endQuiz() {
-  document.querySelectorAll('.quiz-end-modal, .btn').forEach(btn => {
-    btn.addEventListener('click', function (e) {
-      e.preventDefault();
-      document.getElementById('quiz-end-modal').style.display = 'flex';
+async function updateScore() {
+  const token = localStorage.getItem("token");
+  
+  if (!token) return;
+  
+  try {
+    const profileResponse = await fetch("https://quiz-be-zeta.vercel.app/auth/profile", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
-  });
-  
+    
+    const userData = await profileResponse.json();
+    
+    if (score > userData.bestScore) {
+      await fetch("https://quiz-be-zeta.vercel.app/leaderboard/update", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ score: score }),
+      });
+      
+      console.log("Najbolji rezultat ažuriran:", score);
+    }
+  } catch (error) {
+    console.error("Greška pri ažuriranju rezultata:", error);
+  }
+}
 
+function endQuiz() {
+  const modal = document.getElementById('quiz-end-modal');
+  modal.style.display = 'flex';
+  modal.classList.remove('hidden');
   
-  document.getElementById('startGameBtn').addEventListener('click', function () {
-    window.location.href = 'zapocni-igranje2.html'; 
+  document.getElementById('final-score').textContent = score;
+  
+  updateScore().then(() => {
+    fetchUserRank();
   });
+  
+  const restartBtn = document.querySelector('.modal-buttons button:first-child');
+  const leaderboardBtn = document.querySelector('.modal-buttons button:last-child');
+  
+  const newRestartBtn = restartBtn.cloneNode(true);
+  const newLeaderboardBtn = leaderboardBtn.cloneNode(true);
+  
+  restartBtn.parentNode.replaceChild(newRestartBtn, restartBtn);
+  leaderboardBtn.parentNode.replaceChild(newLeaderboardBtn, leaderboardBtn);
+  
+  newRestartBtn.addEventListener('click', function() {
+    closeModal();
+  });
+  
+  newLeaderboardBtn.addEventListener('click', function() {
+    goToLeaderboard();
+  });
+}
+
+async function fetchUserRank() {
+  const token = localStorage.getItem("token");
+  
+  if (!token) {
+    document.getElementById('final-rank').textContent = "?";
+    return;
+  }
+  
+  try {
+    const leaderboardResponse = await fetch("https://quiz-be-zeta.vercel.app/leaderboard", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    
+    const leaderboardData = await leaderboardResponse.json();
+    
+    const profileResponse = await fetch("https://quiz-be-zeta.vercel.app/auth/profile", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    
+    const currentUser = await profileResponse.json();
+    
+    const simulatedLeaderboard = [...leaderboardData];
+    const userIndex = simulatedLeaderboard.findIndex(user => user.username === currentUser.username);
+    
+    if (userIndex >= 0) {
+      const userScore = Math.max(currentUser.bestScore, score);
+      simulatedLeaderboard[userIndex] = {
+        ...simulatedLeaderboard[userIndex],
+        bestScore: userScore
+      };
+    }
+    
+    simulatedLeaderboard.sort((a, b) => b.bestScore - a.bestScore);
+    
+    const userPosition = simulatedLeaderboard.findIndex(user => user.username === currentUser.username) + 1;
+    
+    if (userPosition > 0) {
+      document.getElementById('final-rank').textContent = `#${userPosition}`;
+    } else {
+      document.getElementById('final-rank').textContent = "?";
+    }
+    
+  } catch (error) {
+    console.error("Greška pri dohvaćanju podataka:", error);
+    document.getElementById('final-rank').textContent = "?";
+  }
+}
+
+function goToLeaderboard() {
+  window.location.href = 'index.html#leaderboard-section';
+}
+
+function closeModal() {
+  const modal = document.getElementById('quiz-end-modal');
+  modal.style.display = 'none';
+  questionNumber = 1;
+  score = 0;
+  document.getElementById('bodovi').textContent = '0';
+  loadQuestion();
 }

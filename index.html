@@ -10,9 +10,9 @@
     <div class="navbar">
       <div class="logo">Quiz <span>BiH</span></div>
       <div class="nav-links">
-        <span><a href=""></a>Početna</span>
-        <span><a href="#quiz-section"></a>Uputstva</span>
-        <span><a href="#leaderboard-section"></a>Ljestvica</span>
+        <span><a href="#pocetna">Početna</a></span>
+        <span><a href="#quiz-section">Uputstva</a></span>
+        <span><a href="#leaderboard-section">Leaderboard</a></span>
       </div>
       <div class="auth-links">
         <div class="login-button">
@@ -26,7 +26,7 @@
         </div>
       </div>
     </div>
-    <div class="container">
+    <div class="container" id="pocetna">
       <div class="text-content">
         <h1>Pokažite svoje znanje o <span>Bosni i Hercegovini</span></h1>
         <p>
@@ -40,7 +40,7 @@
         <img src="./slike/home-bg.png" alt="" />
       </div>
     </div>
-    <section class="quiz-section">
+    <section class="quiz-section" id="quiz-section">
       <div class="quiz-text">
         <h2><img src="./slike/Group.svg" alt="" /> Kako funkcioniše kviz?</h2>
         <p>
@@ -81,7 +81,7 @@
         </div>
       </div>
     </div>
-    <section class="leaderboard-section">
+    <section class="leaderboard-section" id="leaderboard-section">
       <div class="leaderboard-container">
         <h2>Takmičite se i osvajajte vrh !</h2>
         <p>
@@ -114,5 +114,6 @@
     </div>
     <script src="./leaderboard.js"></script>
     <script src="./kviz.js"></script>
+    <script src="/zavrsi-kviz.js"></script>
   </body>
 </html>
