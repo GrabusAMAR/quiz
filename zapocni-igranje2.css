@@ -14,30 +14,22 @@
 body {
   margin: 0;
   font-family: "Steradian TRIAL", sans-serif;
-  text-align: center;
-  background-color: var(--light-color);
-  background-image: linear-gradient(120deg, #f5f7fa 0%, #e9ecef 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
   min-height: 100vh;
-  color: var(--dark-color);
-  transition: all 0.3s ease;
+  padding: 20px;
 }
 
 h1 {
-  font-size: 38px;
+  text-align: center;
   color: var(--dark-color);
-  margin-top: 20px;
-  letter-spacing: -0.5px;
-  font-weight: 800;
+  font-size: 42px;
+  margin: 20px 0;
+  animation: fadeInDown 0.8s ease;
 }
 
 h1 span {
   color: var(--primary-color);
   position: relative;
-  display: inline-block;
 }
 
 h1 span::after {
@@ -46,55 +38,38 @@ h1 span::after {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 4px;
+  height: 3px;
   background: var(--primary-gradient);
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
-  width: 50%;
-  padding: 10px 30px;
-  border-radius: 14px;
-  margin-bottom: 25px;
-  box-shadow: var(--shadow);
-  background-color: white;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto 30px;
+  padding: 15px 25px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: var(--card-shadow);
+  animation: slideIn 0.8s ease;
 }
 
-.header div {
+.bodovi, .timer {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 15px;
-  border-radius: 10px;
+  gap: 10px;
+  font-size: 18px;
   font-weight: 600;
-  transition: transform 0.2s ease;
-}
-
-.header div:hover {
-  transform: translateY(-2px);
-}
-
-.header img {
-  width: 24px;
-  height: 24px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
 }
 
 .bodovi {
   background-color: rgba(67, 97, 238, 0.1);
   color: var(--primary-color);
-}
-
-.najbolji-rezultat {
-  background-color: #f8f9fa;
-  color: #fbbc05;
-}
-
-.streak {
-  background-color: #f8f9fa;
-  color: #ea4335;
 }
 
 .timer {
@@ -103,118 +78,106 @@ h1 span::after {
   animation: pulse 1.5s infinite ease-in-out;
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
 .container {
-  width: 50%;
+  max-width: 800px;
   margin: 0 auto;
   background: white;
-  padding: 0;
-  border-radius: 16px;
+  border-radius: 20px;
   box-shadow: var(--card-shadow);
-  border: none;
   overflow: hidden;
-  transition: all 0.3s ease;
+  animation: fadeInUp 0.8s ease;
 }
 
 .question-box {
   background: var(--primary-gradient);
   color: white;
-  padding: 18px;
+  padding: 20px;
   font-size: 20px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  width: 100%;
-  height: 60px;
   position: relative;
 }
 
 .question-box span {
-  text-align: center;
-  color: rgba(255, 255, 255, 0.9);
   font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
 .button {
   background-color: white;
   color: var(--primary-color);
   border: none;
-  padding: 8px 14px;
-  border-radius: 8px;
+  padding: 10px 20px;
+  border-radius: 10px;
   cursor: pointer;
-  position: absolute;
-  right: 20px;
-  text-decoration: none;
   font-weight: 600;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .text-content {
-  font-size: 18px;
-  padding: 20px;
-  line-height: 1.5;
+  font-size: 20px;
+  padding: 30px;
+  line-height: 1.6;
   color: var(--dark-color);
   font-weight: 500;
+  animation: fadeIn 0.5s ease;
 }
 
 .linija {
-  width: 40%;
+  width: 60%;
   height: 4px;
   background: var(--primary-gradient);
-  margin: 15px auto;
+  margin: 0 auto;
   border-radius: 4px;
+  animation: expandWidth 0.8s ease;
 }
 
 .options {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  margin-top: 25px;
-  margin-bottom: 30px;
-  padding: 20px 30px;
+  gap: 15px;
+  padding: 30px;
 }
 
 .option-btn {
   width: 100%;
-  padding: 16px;
+  padding: 18px;
   font-size: 18px;
   border: 2px solid #e9ecef;
-  border-radius: 12px;
+  border-radius: 15px;
   background-color: white;
   color: var(--dark-color);
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 15px;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   font-weight: 500;
+  animation: fadeInUp 0.5s ease;
 }
 
 .option-btn span {
   background-color: rgba(67, 97, 238, 0.1);
-  padding: 6px 12px;
+  padding: 8px 14px;
   border-radius: 50%;
   font-weight: 600;
   color: var(--primary-color);
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .option-btn:hover {
   background-color: rgba(67, 97, 238, 0.05);
   border-color: var(--primary-color);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(67, 97, 238, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(67, 97, 238, 0.15);
 }
 
 .option-btn:hover span {
@@ -322,44 +285,92 @@ h1 span::after {
   box-shadow: 0 12px 20px rgba(67, 97, 238, 0.4);
 }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-@keyframes fadeInScale {
-  from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes expandWidth {
+  from {
+    width: 0;
+  }
+  to {
+    width: 60%;
+  }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 @media screen and (max-width: 768px) {
-  .header .text-bodovi {
-    display: none;
+  body {
+    padding: 15px;
   }
 
-  .header {
-    width: 90%;
-  }
-
-  .container {
-    width: 90%;
-  }
-
-  .question-box {
-    justify-content: space-between;
-  }
-  
   h1 {
     font-size: 32px;
   }
-  
-  .option-btn {
-    padding: 14px;
-    font-size: 16px;
+
+  .header {
+    padding: 12px 20px;
   }
-  
-  .modal-content {
-    padding: 25px 20px;
-    max-width: 90%;
+
+  .bodovi, .timer {
+    font-size: 16px;
+    padding: 8px 15px;
+  }
+
+  .container {
+    border-radius: 15px;
+  }
+
+  .question-box {
+    padding: 15px;
+    font-size: 18px;
+  }
+
+  .text-content {
+    font-size: 18px;
+    padding: 20px;
+  }
+
+  .options {
+    padding: 20px;
+  }
+
+  .option-btn {
+    padding: 15px;
+    font-size: 16px;
   }
 }

@@ -42,7 +42,7 @@ async function loadQuestion() {
 }
 
 function startTimer() {
-  let timeLeft = 10;
+  let timeLeft = 60;
   document.getElementById("timer").textContent = timeLeft;
 
   clearInterval(timerInterval);
