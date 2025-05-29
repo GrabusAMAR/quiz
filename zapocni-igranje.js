@@ -1,5 +1,6 @@
 let questionNumber = 1;
 let score = 0;
+let coins = 0;
 let timerInterval;
 let currentGameId;
 let currentQuestionId;
@@ -13,6 +14,9 @@ async function loadQuestion() {
       window.location.href = 'login.html';
       return;
     }
+
+    // Fetch initial coins
+    await fetchUserCoins();
 
     const res = await fetch("https://quiz-be-zeta.vercel.app/game/start", {
       method: "POST",
@@ -38,6 +42,50 @@ async function loadQuestion() {
     console.error(error);
     alert('Došlo je do greške pri učitavanju pitanja. Molimo pokušajte ponovo.');
     window.location.href = 'index.html';
+  }
+}
+
+async function fetchUserCoins() {
+  const token = localStorage.getItem("token");
+  if (!token) return;
+
+  try {
+    const response = await fetch("https://quiz-be-zeta.vercel.app/auth/profile", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    
+    const userData = await response.json();
+    coins = userData.coins || 0;
+    updateCoinsDisplay();
+  } catch (error) {
+    console.error("Greška pri dohvaćanju novčića:", error);
+  }
+}
+
+function updateCoinsDisplay() {
+  const coinsElement = document.getElementById("coins");
+  if (coinsElement) {
+    coinsElement.textContent = coins;
+  }
+}
+
+async function updateUserCoins() {
+  const token = localStorage.getItem("token");
+  if (!token) return;
+
+  try {
+    await fetch("https://quiz-be-zeta.vercel.app/auth/update-coins", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ coins: coins }),
+    });
+  } catch (error) {
+    console.error("Greška pri ažuriranju novčića:", error);
   }
 }
 
@@ -105,16 +153,18 @@ function showQuestion(question) {
 
       if (result.correct) {
         score++;
+        coins++; // Add one coin for correct answer
         localStorage.setItem("score", score);
         btn.style.background = "#28a745";
         document.getElementById("bodovi").textContent = score;
+        updateCoinsDisplay(); // Update coins display
         setTimeout(() => {
           showQuestion(result.nextQuestion);
         }, 1000);
       } else {
         btn.style.backgroundColor = "#dc3545";
         setTimeout(() => {
-          endQuiz();
+          endQuiz(false); // Pass false to indicate game over due to wrong answer
         }, 1000);
       }
     });
@@ -151,17 +201,55 @@ async function updateScore() {
       
       console.log("Najbolji rezultat ažuriran:", score);
     }
+
+    // Update coins in the database
+    await updateUserCoins();
   } catch (error) {
     console.error("Greška pri ažuriranju rezultata:", error);
   }
 }
 
-function endQuiz() {
+function endQuiz(isVoluntary = true) {
   const modal = document.getElementById('quiz-end-modal');
   modal.style.display = 'flex';
   modal.classList.remove('hidden');
   
   document.getElementById('final-score').textContent = score;
+  
+  // Update modal content based on how the game ended
+  const modalTitle = document.querySelector('.modal-content h2');
+  const modalSubtext = document.querySelector('.modal-content p:nth-of-type(2)');
+  
+  if (!isVoluntary) {
+    modalTitle.textContent = "Kviz završen!";
+    modalSubtext.textContent = "Nažalost, pogrešan odgovor. Evo vaše statistike:";
+    
+    // Add revival button if player has enough coins
+    const modalButtons = document.querySelector('.modal-buttons');
+    if (coins >= 5) {
+      const reviveButton = document.createElement('button');
+      reviveButton.innerHTML = `<img src="./slike/coin.svg" alt="Coin" style="width: 20px; height: 20px; margin-right: 5px;"> Oživi se (5 novčića)`;
+      reviveButton.style.backgroundColor = '#DAA520';
+      reviveButton.style.color = 'white';
+      reviveButton.style.marginRight = '10px';
+      reviveButton.style.display = 'flex';
+      reviveButton.style.alignItems = 'center';
+      reviveButton.style.justifyContent = 'center';
+      reviveButton.addEventListener('click', function() {
+        revivePlayer();
+      });
+      modalButtons.insertBefore(reviveButton, modalButtons.firstChild);
+    } else {
+      const noCoinsMessage = document.createElement('p');
+      noCoinsMessage.textContent = `Nemate dovoljno novčića za oživljavanje (potrebno: 5, imate: ${coins})`;
+      noCoinsMessage.style.color = '#666';
+      noCoinsMessage.style.marginBottom = '15px';
+      modalButtons.parentNode.insertBefore(noCoinsMessage, modalButtons);
+    }
+  } else {
+    modalTitle.textContent = "Čestitamo na završenom kvizu !!";
+    modalSubtext.textContent = "U prilogu pogledajte svoju statistiku :";
+  }
   
   updateScore().then(() => {
     fetchUserRank();
@@ -241,11 +329,68 @@ function goToLeaderboard() {
   window.location.href = 'index.html#leaderboard-section';
 }
 
+async function revivePlayer() {
+  if (coins >= 5) {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("Sesija je istekla. Molimo prijavite se ponovo.");
+        return;
+      }
+
+      // Call the revive endpoint
+      const response = await fetch("https://quiz-be-zeta.vercel.app/game/revive", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          gameId: currentGameId
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to revive');
+      }
+
+      const data = await response.json();
+      
+      // Update coins from the response
+      coins = data.coins;
+      
+      // Update the display
+      const coinsElement = document.getElementById("coins");
+      if (coinsElement) {
+        coinsElement.textContent = coins;
+      }
+      
+      // Close the modal
+      const modal = document.getElementById('quiz-end-modal');
+      modal.style.display = 'none';
+      
+      // Continue the game with the next question
+      if (data.nextQuestion) {
+        showQuestion(data.nextQuestion);
+      } else {
+        loadQuestion();
+      }
+    } catch (error) {
+      console.error("Greška pri oživljavanju:", error);
+      alert("Došlo je do greške pri oživljavanju. Molimo pokušajte ponovo.");
+    }
+  } else {
+    alert("Nemate dovoljno novčića za oživljavanje!");
+  }
+}
+
 function closeModal() {
   const modal = document.getElementById('quiz-end-modal');
   modal.style.display = 'none';
   questionNumber = 1;
   score = 0;
+  coins = 0; // Reset coins for new game
   document.getElementById('bodovi').textContent = '0';
+  document.getElementById('coins').textContent = '0';
   loadQuestion();
 }

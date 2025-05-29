@@ -45,7 +45,7 @@ h1 span::after {
 
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   max-width: 800px;
   margin: 0 auto 30px;
@@ -54,9 +54,10 @@ h1 span::after {
   border-radius: 15px;
   box-shadow: var(--card-shadow);
   animation: slideIn 0.8s ease;
+  gap:50px
 }
 
-.bodovi, .timer {
+.bodovi, .timer, .coins {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -65,11 +66,23 @@ h1 span::after {
   padding: 10px 20px;
   border-radius: 12px;
   transition: all 0.3s ease;
+  width: fit-content;
+  flex: 0 1 auto;
 }
 
 .bodovi {
   background-color: rgba(67, 97, 238, 0.1);
   color: var(--primary-color);
+}
+
+.coins {
+  background-color: rgba(255, 215, 0, 0.1);
+  color: #DAA520;
+}
+
+.coins img {
+  width: 24px;
+  height: 24px;
 }
 
 .timer {

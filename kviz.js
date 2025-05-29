@@ -38,6 +38,7 @@ window.addEventListener("DOMContentLoaded", () => {
     if (loginBtn) loginBtn.style.display = "none";
     if (registerBtn) registerBtn.style.display = "none";
     if (logoutBtn) logoutBtn.style.display = "inline-block";
+    fetchUserCoins();
 
     logoutBtn.addEventListener("click", (e) => {
       e.preventDefault();
@@ -50,6 +51,27 @@ window.addEventListener("DOMContentLoaded", () => {
     if (registerBtn) registerBtn.style.display = "inline-block";
   }
 });
+
+async function fetchUserCoins() {
+  const token = localStorage.getItem("token");
+  if (!token) return;
+
+  try {
+    const response = await fetch("https://quiz-be-zeta.vercel.app/auth/profile", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    
+    const userData = await response.json();
+    const coinsAmount = document.querySelector(".coins-amount");
+    if (coinsAmount) {
+      coinsAmount.textContent = userData.coins || 0;
+    }
+  } catch (error) {
+    console.error("Greška pri dohvaćanju novčića:", error);
+  }
+}
 
 function logRespons(response) {
   response.json().then((data) => {

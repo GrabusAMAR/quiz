@@ -110,6 +110,33 @@ body {
   width: 100%;
 }
 
+.coins-display {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(67, 97, 238, 0.1);
+  padding: 8px 16px;
+  border-radius: 8px;
+  margin-right: 10px;
+  transition: all 0.3s ease;
+}
+
+.coins-display:hover {
+  transform: translateY(-2px);
+  background: rgba(67, 97, 238, 0.15);
+}
+
+.coin-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.coins-amount {
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 18px;
+}
+
 .auth-links {
   display: flex;
   gap: 15px;
@@ -162,6 +189,7 @@ body {
   border: none;
   box-shadow: 0 6px 15px rgba(67, 97, 238, 0.2);
   transition: all 0.3s ease;
+  margin-left: 0;
 }
 
 .odjavi-se a {
@@ -633,6 +661,9 @@ body {
   }
   .auth-links .register-button{
     display: none;
+  }
+  .coins-display {
+    margin-right: 8px;
   }
 
   .quiz-text {
